@@ -45,9 +45,9 @@ export class LayoutAdaptor {
   }
 
   /**
-   * Initializes the layout adaptor with specified options or element ID.
-   * @param options - Configuration options or an element ID for the adaptor.
-   * @param isShowInitTip - Flag to show initialization log.
+   * Initializes the layout adaptor with specified options.
+   * @param options Configuration options for the adaptor.
+   * @param isShowInitTip Whether to show the initialization log.
    */
   initialize(
     options: ResponsiveLayoutOptions | string = {},
