@@ -1,0 +1,59 @@
+{
+  "name": "layout-adaptor",
+  "version": "0.0.1",
+  "description": "screen container",
+  "author": {
+    "name": "SK-ERIC",
+    "email": "graceful.sk0@gmail.com",
+    "url": "https://github.com/SK-ERIC"
+  },
+  "homepage": "https://github.com/SK-ERIC/layout-adaptor",
+  "repository": {
+    "url": "https://github.com/SK-ERIC/layout-adaptor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SK-ERIC/layout-adaptor/issues"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "pnpm typecheck && unbuild && pnpm build-pkg",
+    "build-pkg": "pnpm -r --filter='./packages/*' run build",
+    "stub": "pnpm -r run stub",
+    "lint": "eslint . --fix",
+    "format": "bt prettier-write",
+    "commit": "bt git-commit",
+    "cleanup": "bt cleanup",
+    "ncu": "bt ncu",
+    "publish-pkg": "pnpm -r publish --access public",
+    "typecheck": "tsc --noEmit",
+    "release": "bt release && pnpm build &&  pnpm publish-pkg"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.4",
+    "bitsy-cli": "^0.0.4",
+    "eslint": "^8.55.0",
+    "eslint-config-bitsy": "^0.0.9",
+    "simple-git-hooks": "^2.9.0",
+    "typescript": "^5.3.3",
+    "unbuild": "^2.0.0"
+  },
+  "simple-git-hooks": {
+    "commit-msg": "pnpm bt git-commit-verify",
+    "pre-commit": "pnpm bt lint-staged"
+  }
+}
